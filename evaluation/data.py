@@ -71,7 +71,8 @@ class DataLoader:
         elif self.dataset == "un_dtm":
             self.docs, self.timestamps = self._un_dtm()
         elif self.dataset == "20news":
-            self.docs, self.timestamps = self._20news()
+            #self.docs, self.timestamps = self._20news()
+            self.docs, self.timestamps = self.load_octis()
 
         if save:
             self._save(self.docs, save)
