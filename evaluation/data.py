@@ -184,7 +184,7 @@ class DataLoader:
     def _trump(self) -> Tuple[List[str], List[str]]:
         """Prepare the trump dataset"""
         trump = pd.read_csv(
-            "https://drive.google.com/uc?export=download&id=1xRKHaP-QwACMydlDnyFPEaFdtskJuBa6"
+            "https://drive.google.com/uc?export=download&id=1fHAHiYVOQTBVUq87VUVB3e28WTciDk-N"
         )
         trump = trump.loc[(trump.isRetweet == "f") & (trump.text != ""), :]
         timestamps = trump.date.to_list()
