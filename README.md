@@ -1,5 +1,9 @@
-The code and results for the experiments in [BERTopic: Neural topic modeling with a class-based TF-IDF procedure](http://arxiv.org/abs/2203.05794). 
-The results for Table 1 and 2 can be found in `results/Basic/`. The results for Table 3 can be found in `results/Dynamic Topic Modeling`. 
+This repository contains code for my Bachelor's thesis experiments on Topic Modeling Algorithms.
 
-To run the experiments, you can follow along with the tutorial in `notebooks/Evaluation.ipynb`. 
-To visualize the results from the paper, use `notebooks/Results.ipynb`. 
+To run the experiments, first, you have to install packages from `requirements.txt`.
+- If you are using Linux, then run `pip install -r requirements.txt`.
+- If you are a Windows user, consider using WSL2 or see the Google Colaboraty notebook [https://colab.research.google.com/drive/15AffvTeZ8h7Mho8FLHkAz0pzKrKwj6lm?usp=sharing]
+
+After successful installation, run the `eval.ipnyb` notebook.
+
+Results are saved to JSON files. To see the results I got by running the notebook see the Google Drive folder [https://drive.google.com/drive/folders/1oLLP6iejLczMLMayvMzbtSQ9kw5eQ75x?usp=drive_link]
