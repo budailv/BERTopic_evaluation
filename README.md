@@ -2,7 +2,7 @@ This repository contains code for my Bachelor's thesis experiments on Topic Mode
 
 To run the experiments, first, you have to install packages from `requirements.txt`.
 - If you are using Linux, then run `pip install -r requirements.txt`.
-- If you are a Windows user, consider using WSL2 or see the Google Colaboraty notebook [https://colab.research.google.com/drive/15AffvTeZ8h7Mho8FLHkAz0pzKrKwj6lm?usp=sharing]
+- If you are a Windows user, consider using WSL2 and follow the instruction above or see the Google Colaboraty notebook [https://colab.research.google.com/drive/15AffvTeZ8h7Mho8FLHkAz0pzKrKwj6lm?usp=sharing]
 
 After successful installation, run the `eval.ipnyb` notebook.
 
