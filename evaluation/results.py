@@ -20,12 +20,12 @@ class Results:
     def get_data(self, name, dtm: bool = False, aggregated: bool = False):
         if dtm:
             if aggregated:
-                return self.dtm_results[name].groupby("Model").mean()
+                return self.dtm_results[name].groupby("Model").mean(numeric_only=True)
             else:
                 return self.dtm_results[name]
         else:
             if aggregated:
-                return self.basic_results[name].groupby("Model").mean()
+                return self.basic_results[name].groupby("Model").mean(numeric_only=True)
             else:
                 return self.basic_results[name]
 
@@ -126,7 +126,7 @@ class Results:
             data = {
                 dataset: (
                     dataframe.groupby("Model")
-                    .mean()
+                    .mean(numeric_only=True)
                     .loc[
                         :,
                         [
@@ -142,7 +142,7 @@ class Results:
             data = {
                 dataset: (
                     dataframe.groupby("Model")
-                    .mean()
+                    .mean(numeric_only=True)
                     .loc[
                         :,
                         [
@@ -220,19 +220,18 @@ class Results:
             "ComputationTime",
         ]
         results = pd.DataFrame(columns=columns)
-
+        dataset = None
         # Extract results from each file
         for index, path in enumerate(data_path):
-
             # Load raw results
             with open(f"{folder}/{path}", "r") as f:
                 data = json.load(f)
-
+            
             # Write all results to `results`
             for row in data:
-
                 # General info
                 dataset = row["Dataset"]
+                
                 if self.combine_models:
                     model = row["Model"]
                 else:
@@ -272,7 +271,8 @@ class Results:
         for column in ["npmi", "diversity"]:
             results[column] = results[column].astype(float)
 
-        self.basic_results[dataset] = results
+        if dataset is not None:
+            self.basic_results[dataset] = results
 
     def _load_dtm_results(self, folder):
         datasets = os.listdir(folder)
@@ -348,7 +348,8 @@ class Results:
         for file in files[1:]:
             df_to_add = pd.read_csv(path + file)
             df_to_add["model"] = file
-            computation = computation.append(df_to_add)
+            computation = pd.concat([computation, df_to_add])
+            #computation = computation.append(df_to_add)
 
         self.computation = computation
 
@@ -373,13 +374,13 @@ class Results:
 
             if confidence_interval:
                 # Define variables to plot
-                y_mean = selection.groupby("nr_topics").mean()[y]
+                y_mean = selection.groupby("nr_topics").mean(numeric_only=True)[y]
                 x_vals = y_mean.index
 
                 # Compute upper and lower bounds using chosen uncertainty measure: here
                 # it is a fraction of the standard deviation of measurements at each
                 # time point based on the unbiased sample variance
-                y_std = selection.groupby("nr_topics").std()[y]
+                y_std = selection.groupby("nr_topics").std(numeric_only=True)[y]
                 error = 0.5 * y_std
                 lower = y_mean - error
                 upper = y_mean + error
@@ -505,15 +506,15 @@ def highlight_max(data):
 
         maximum = data.max()
         second_to_max = max([val for val in data if val != maximum])
-        third_to_max = max([val for val in data if val not in [maximum, second_to_max]])
+        # third_to_max = max([val for val in data if val not in [maximum, second_to_max]])
         to_return = []
         for value in data:
             if value == maximum and type(value) != str:
                 to_return.append(attr)
             elif value == second_to_max and type(value) != str:
                 to_return.append(lighter_attr)
-            elif value == third_to_max and type(value) != str:
-                to_return.append(lightest_attr)
+            #elif value == third_to_max and type(value) != str:
+                #to_return.append(lightest_attr)
             else:
                 to_return.append("")
         return to_return
