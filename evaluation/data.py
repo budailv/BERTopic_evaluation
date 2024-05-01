@@ -15,7 +15,7 @@ class DataLoader:
 
     Arguments:
         dataset: The name of the dataset, default options:
-                    * trump
+                    * Trump
                     * 20news
 
     Usage:
@@ -24,7 +24,7 @@ class DataLoader:
 
     ```python
     from evaluation import DataLoader
-    dataloader = DataLoader(dataset="trump").prepare_docs(save="trump.txt").preprocess_octis(output_folder="trump")
+    dataloader = DataLoader(dataset="Trump").prepare_docs(save="Trump.txt").preprocess_octis(output_folder="Trump")
     ```
 
     **20 Newsgroups** - Unprocessed
@@ -57,17 +57,17 @@ class DataLoader:
         """Load in the documents
 
         ```python
-        dataloader = DataLoader(dataset="trump")
+        dataloader = DataLoader(dataset="Trump")
         docs, timestamps = dataloader.load_docs()
         ```
         """
         if docs is not None:
             return self.docs, None
 
-        if self.dataset == "trump":
-            self.docs, self.timestamps = self._trump()
-        elif self.dataset == "trump_dtm":
-            self.docs, self.timestamps = self._trump_dtm()
+        if self.dataset == "Trump":
+            self.docs, self.timestamps = self._Trump()
+        elif self.dataset == "Trump_dtm":
+            self.docs, self.timestamps = self._Trump_dtm()
         elif self.dataset == "un_dtm":
             self.docs, self.timestamps = self._un_dtm()
         elif self.dataset == "20news":
@@ -181,28 +181,28 @@ class DataLoader:
         dataset = preprocessor.preprocess_dataset(documents_path=documents_path)
         dataset.save(output_folder)
 
-    def _trump(self) -> Tuple[List[str], List[str]]:
-        """Prepare the trump dataset"""
-        trump = pd.read_csv(
+    def _Trump(self) -> Tuple[List[str], List[str]]:
+        """Prepare the Trump dataset"""
+        Trump = pd.read_csv(
             "https://drive.google.com/uc?export=download&id=1fHAHiYVOQTBVUq87VUVB3e28WTciDk-N"
         )
-        trump = trump.loc[(trump.isRetweet == "f") & (trump.text != ""), :]
-        timestamps = trump.date.to_list()
-        docs = trump.text.to_list()
+        Trump = Trump.loc[(Trump.isRetweet == "f") & (Trump.text != ""), :]
+        timestamps = Trump.date.to_list()
+        docs = Trump.text.to_list()
         docs = [doc.lower().replace("\n", " ") for doc in docs if len(doc) > 2]
         timestamps = [
             timestamp for timestamp, doc in zip(timestamps, docs) if len(doc) > 2
         ]
         return docs, timestamps
 
-    def _trump_dtm(self) -> Tuple[List[str], List[str]]:
-        """Prepare the trump dataset including timestamps"""
-        trump = pd.read_csv(
+    def _Trump_dtm(self) -> Tuple[List[str], List[str]]:
+        """Prepare the Trump dataset including timestamps"""
+        Trump = pd.read_csv(
             "https://drive.google.com/uc?export=download&id=1xRKHaP-QwACMydlDnyFPEaFdtskJuBa6"
         )
-        trump = trump.loc[(trump.isRetweet == "f") & (trump.text != ""), :]
-        timestamps = trump.date.to_list()
-        documents = trump.text.to_list()
+        Trump = Trump.loc[(Trump.isRetweet == "f") & (Trump.text != ""), :]
+        timestamps = Trump.date.to_list()
+        documents = Trump.text.to_list()
 
         docs = []
         time = []
