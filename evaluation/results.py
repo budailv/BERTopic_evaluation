@@ -1,5 +1,7 @@
 import os
 import json
+import gdown
+import zipfile
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -8,8 +10,9 @@ from typing import Mapping, List
 
 
 class Results:
-    def __init__(self, main_folder: str, combine_models: bool = False) -> None:
+    def __init__(self, main_folder: str, gdrive_folder_id: str, combine_models: bool = False) -> None:
         self.main_folder = main_folder
+        self.gdrive_folder_id = gdrive_folder_id
         self.combine_models = combine_models
 
         self.basic_results = {}
@@ -103,8 +106,16 @@ class Results:
         )
 
     def _load_results(self):
-        folders = os.listdir(self.main_folder)
 
+        if not os.path.exists(self.main_folder):
+            os.makedirs(self.main_folder)
+        
+        path = os.getcwd() 
+        os.chdir(self.main_folder)
+        gdown.download_folder(id=self.gdrive_folder_id, quiet=True)
+        os.chdir(path)
+        folders = os.listdir(self.main_folder)
+            
         if "Basic" in folders:
             for folder in os.listdir(self.main_folder + "/Basic"):
                 self._results_per_folder(f"{self.main_folder}Basic/{folder}")
