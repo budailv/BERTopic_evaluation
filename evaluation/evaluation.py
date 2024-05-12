@@ -3,6 +3,7 @@ import time
 import itertools
 import numpy as np
 import pandas as pd
+import os
 
 from sklearn.feature_extraction.text import CountVectorizer
 from typing import Mapping, Any, List, Tuple
@@ -176,6 +177,12 @@ class Trainer:
             results.append(result)
 
         if save:
+
+            directory = os.path.dirname(save)
+    
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+                
             with open(f"{save}.json", "w") as f:
                 json.dump(results, f)
 
