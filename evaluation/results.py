@@ -106,13 +106,12 @@ class Results:
         )
 
     def _load_results(self):
-
+        path = os.getcwd()
         if not os.path.exists(self.main_folder):
             os.makedirs(self.main_folder)
-        
-        path = os.getcwd() 
-        os.chdir(self.main_folder)
-        gdown.download_folder(id=self.gdrive_folder_id, quiet=True)
+            os.chdir(self.main_folder)
+            gdown.download_folder(id=self.gdrive_folder_id, quiet=True)
+                
         os.chdir(path)
         folders = os.listdir(self.main_folder)
             
