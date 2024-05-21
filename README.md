@@ -4,7 +4,7 @@ To run the experiments, first, you have to install packages from `requirements.t
 - If you are using Linux, then run `pip install -r requirements.txt`.
 - If you are a Windows user, consider using WSL2 and follow the instruction above or see the Google Colaboraty notebook [https://colab.research.google.com/drive/15AffvTeZ8h7Mho8FLHkAz0pzKrKwj6lm?usp=sharing]
 
-After successful installation, run the `Evaluation.ipnyb` notebook from `notebooks` folder. In the same folder, `Results.ipynb` visualizes the notebooks. If you did run the `Evaluation.ipynb` notebook, results will be automatically downloaded from my Google Drive folder, see below.
+After successful installation, run the `Evaluation.ipnyb` notebook from `notebooks` folder. In the same folder, `Results.ipynb` visualizes the results. If you did not run the `Evaluation.ipynb` notebook, results will be automatically downloaded from my Google Drive folder, see below.
 
 Results are saved to JSON files. To see the results I got by running the notebook see the Google Drive folder [https://drive.google.com/drive/folders/1oLLP6iejLczMLMayvMzbtSQ9kw5eQ75x?usp=drive_link]
 
