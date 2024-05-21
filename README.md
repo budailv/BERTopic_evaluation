@@ -7,3 +7,5 @@ To run the experiments, first, you have to install packages from `requirements.t
 After successful installation, run the `Evaluation.ipnyb` notebook from `notebooks` folder.
 
 Results are saved to JSON files. To see the results I got by running the notebook see the Google Drive folder [https://drive.google.com/drive/folders/1oLLP6iejLczMLMayvMzbtSQ9kw5eQ75x?usp=drive_link]
+
+My thesis can be found in the Google Drive folder: https://drive.google.com/drive/folders/1LnIaXMw1aDGWe3q1TmmwuJFnebdRt1Bz?usp=drive_link
